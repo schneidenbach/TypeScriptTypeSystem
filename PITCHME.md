@@ -16,31 +16,31 @@
 
 ## Why TypeScript?
 
-Future of JavaScript, Today
-Better Tooling
+Future of JavaScript, Today  
+Better Tooling  
 It's JavaScript That Scales
 
 ---
 
 ## Best Thing about TypeScript
 
-It doesn't try to not be JavaScript - it just tries to make JavaScript better
+> It doesn't try to not be JavaScript - it just tries to make JavaScript better
 
-- ?
+?
 
 ---
 
 ## Best Thing about TypeScript
 
-It doesn't try to not be JavaScript - it just tries to make JavaScript better
+> It doesn't try to not be JavaScript - it just tries to make JavaScript better
 
-- Me
+Me
 
 ---
 
 ## Major Companies Are Using TypeScript
 
-Google
+Google  
 Slack
 
 ---
@@ -53,6 +53,6 @@ Slack
 
 ## What TypeScript Isn't
 
-> *TypeScript is manifestly not about turning JavaScript into C#.* You’ll never be best of breed in one ecosystem by attempting to retrofit another ecosystem.
+> **TypeScript is manifestly not about turning JavaScript into C#.** You’ll never be best of breed in one ecosystem by attempting to retrofit another ecosystem.
 
 Anders Heljsberg
