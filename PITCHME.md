@@ -149,7 +149,264 @@ function printNameAndAge(name: string, age: number) {
     console.log(`You are ${age} years old.`);
 }
 
-printNameAndAge("Spencer", 30); //ok
-printNameAndAge();  //error: need 2 parameters
-printNameAndAge("Jeff", "Jon", "Jay", "old");   //nope
+printNameAndAge("Spencer", 30);                 //ok
+printNameAndAge();                              //error
+printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
+```
+
+---
+
+## Functions
+
+In addition to parameters...
+
+```typescript
+function printNameAndAge(name, age) : void {
+    console.log(`Hello ${name}!`);
+    console.log(`You are ${age} years old.`);
+}
+```
+
+You can add type annotations to functions to explicitly set a return type
+
+---
+
+## Functions
+
+This is compile-time enforced
+
+```typescript
+function operate(num1: number, num2: number, op: string) : number {
+    if (op === "add") {
+        return num1 + num2;
+    }
+    //ERROR: return missing
+}
+```
+
+---
+
+## Interfaces
+
+The types you will use the most  
+They are similar, but not the same as .NET interfaces!
+
+---
+
+## Duck typing
+
+If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
+
+---
+
+## Duck typing
+
+![PHP? No thanks!](assets/duck.jpg)
+
+---
+
+## Here's an interface
+
+```typescript
+interface Person {
+    firstName: string;
+    lastName; string;
+}
+```
+
+---
+
+## Interfaces define structure
+
+The "shape" of the object is what counts
+
+```typescript
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function addPerson(newPerson: Person) {
+    //do some stuff
+}
+
+addPerson({
+    firstName: "John",
+    lastName: "Lackey"
+});     //totally valid
+```
+
+---
+
+## Interfaces define structure
+
+The "shape" of the object is what counts
+
+```typescript
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function addPerson(newPerson: Person) {
+    //do some stuff
+}
+
+addPerson({
+    firstName: "Matt"
+})      //fails
+```
+
+---
+
+## Optional properties
+
+```typescript
+interface Person {
+    firstName: string;
+    lastName?: string;
+}
+```
+
+---
+
+## Optional properties
+
+```typescript
+interface Person {
+    firstName: string;
+    lastName?: string;
+}
+
+function addPerson(newPerson: Person) {
+    //do some stuff
+}
+
+addPerson({
+    firstName: "Matt"
+})      //valid!
+```
+
+---
+
+## But that's not all
+
+> “Interfaces are capable of describing the wide range of shapes that JavaScript objects can take”
+TS docs
+
+---
+
+## Function types
+
+```typescript
+interface Logger {
+    (message: string, severity: string): void;
+}
+```
+
+---
+
+## Function types
+
+```typescript
+interface Logger {
+    (message: string, severity: string): void;
+}
+
+let aLogger: Logger = (message, severity) => {
+    //log to console?
+}
+```
+
+---
+
+## Index types
+
+Specifies a type as "indexable"
+
+```typescript
+interface NumberDictionary {
+    [index: string]: number;
+}
+```
+
+The index type must be a number or string  
+Useful for enforcing the return type of an indexed type
+
+---
+
+## We'll revisit index types
+
+---
+
+![Alton Brown](assets/alton.jpg)
+
+---
+
+## What's the runtime impact of interfaces?
+
+---
+
+Interfaces don't compile down to anything
+
+```typescript
+////Person.ts
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+////Person.js
+//nothing here!
+```
+
+Use them to give meaning to your code
+
+---
+
+## Generics
+
+Allows you to define reusable constraints on types
+
+```typescript
+let thePersons: Array<Person> = [];
+
+thePersons.push({
+    firstName: "John",
+    lastName: "Lackey"
+});
+```
+
+---
+
+## Generics: TODO
+
+generic constraints
+
+---
+
+## Classes
+
+Groups of data and actions, like C#/VB.NET classes
+
+```typescript
+class Animal {
+    string: name;
+    
+    move() : void {
+        console.log(`${this.name} moved.`);
+    }
+}
+```
+
+---
+
+## Classes
+
+Classes can implement interfaces
+
+```typescript
+interface Person {
+
+}
 ```
