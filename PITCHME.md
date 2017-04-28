@@ -61,18 +61,22 @@ Anders Heljsberg
 
 ## Everyone Talks About
 
-advanced features like async/await  
+async/await  
 classes  
 arrow functions  
 basic type usage
 
 ---
 
-## These are great reasons to use TypeScript
+![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+
+These are great reasons to use TypeScript
 
 ---
 
-## Equally good - TypeScript's awesome Type system
+![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+
+Equally good - TypeScript's awesome type system
 
 ---
 
@@ -82,9 +86,9 @@ basic type usage
 
 ## Let's Talk Basics
 
-number, string, boolean, array  
-null, undefined  
-any
+`number`, `string`, `boolean`, `array`  
+`null`, `undefined`  
+`any`
 
 ---
 
@@ -93,13 +97,13 @@ any
 Variables and functions will be given types by TypeScript where possible
 
 ```typescript
-let aNumber = 42;           //aNumber is inferred to be of type 'number'
+let aNumber = 42;   //aNumber is inferred to be type 'number'
 ```
 
 If you mix types, TypeScript will show an error
 
 ```typescript
-let aNumber = 42;           //aNumber is inferred to be of type 'number'
-aNumber = "forty two";      //Error: aNumber is of type number
+let aNumber = 42;       //aNumber is inferred to be of type 'number'
+aNumber = "forty two";  //Error: aNumber is of type number
 ```
 
