@@ -59,3 +59,47 @@ Anders Heljsberg
 
 ---
 
+## Everyone Talks About
+
+advanced features like async/await  
+classes  
+arrow functions  
+basic type usage
+
+---
+
+## These are great reasons to use TypeScript
+
+---
+
+## Equally good - TypeScript's awesome Type system
+
+---
+
+## Let's Dive In
+
+---
+
+## Let's Talk Basics
+
+number, string, boolean, array  
+null, undefined  
+any
+
+---
+
+## Implicit Types
+
+Variables and functions will be given types by TypeScript where possible
+
+```typescript
+let aNumber = 42;           //aNumber is inferred to be of type 'number'
+```
+
+If you mix types, TypeScript will show an error
+
+```typescript
+let aNumber = 42;           //aNumber is inferred to be of type 'number'
+aNumber = "forty two";      //Error: aNumber is of type number
+```
+
