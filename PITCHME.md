@@ -56,3 +56,6 @@ Slack
 > **TypeScript is manifestly not about turning JavaScript into C#.** You’ll never be best of breed in one ecosystem by attempting to retrofit another ecosystem.
 
 Anders Heljsberg
+
+---
+
