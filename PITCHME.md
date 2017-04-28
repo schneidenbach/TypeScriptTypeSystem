@@ -103,7 +103,53 @@ let aNumber = 42;   //aNumber is inferred to be type 'number'
 If you mix types, TypeScript will show an error
 
 ```typescript
-let aNumber = 42;       //aNumber is inferred to be of type 'number'
+let aNumber = 42;
 aNumber = "forty two";  //Error: aNumber is of type number
 ```
 
+---
+
+## Explicit Types
+
+You can add type annotations to your variables
+
+```typescript
+let aNumber: number = 42;
+```
+
+Explicitly marks variable as a type  
+Useful when you don't know value ahead of time
+
+---
+
+## Functions
+
+In JavaScript, it's a free-for-all
+
+```typescript
+function printNameAndAge(name, age) {
+    console.log(`Hello ${name}!`);
+    console.log(`You are ${age} years old.`);
+}
+
+printNameAndAge("Spencer", 30);
+printNameAndAge();  //totally valid
+printNameAndAge("Jeff", "Jon", "Jay", "old");
+```
+
+---
+
+## Functions
+
+In TypeScript, it's better enforced
+
+```typescript
+function printNameAndAge(name: string, age: number) {
+    console.log(`Hello ${name}!`);
+    console.log(`You are ${age} years old.`);
+}
+
+printNameAndAge("Spencer", 30); //ok
+printNameAndAge();  //error: need 2 parameters
+printNameAndAge("Jeff", "Jon", "Jay", "old");   //nope
+```
