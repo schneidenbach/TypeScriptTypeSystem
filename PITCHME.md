@@ -571,3 +571,49 @@ printNumbers(["two", 2]);   //error
 
 ## Type assertions and type guards
 
+But before we do...
+
+---
+
+Let's talk about `instanceof` vs `typeof` briefly
+
+---
+
+## `typeof`
+
+Returns a `string`  
+Used to compare primitives
+
+---
+
+## `typeof`
+
+Code | Returns
+---- | ------
+`typeof "asdf"` | `"string"`
+`typeof 123` | `"number"`
+`typeof function() {}` | `"function"`
+`typeof {}` | `"object"`
+`typeof new Person()` | `"object"`
+`typeof undefined` | `"undefined"`
+`typeof null` | `"object"`
+
+---
+
+## `typeof`
+
+TypeScript is contextually aware when you're in a `typeof` block
+
+```typescript
+function printLowerCase(arg: any) {
+    if (typeof arg === "string") {
+        console.log(arg.toLowerCase());
+    } else {
+        console.log(arg);
+    }
+}
+```
+
+---
+
+## `instanceof`
