@@ -175,8 +175,8 @@ function printNameAndAge(name, age) {
 }
 
 printNameAndAge("Spencer", 30);
-printNameAndAge();  //totally valid
-printNameAndAge("Jeff", "Jon", "Jay", "old");
+printNameAndAge();                              //totally valid
+printNameAndAge("Jeff", "Jon", "Jay", "old");   //totally valid
 ```
 
 ---
@@ -782,8 +782,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
 
 if (isFish(pet)) {
     pet.swim();
-}
-else {
+} else {
     pet.fly();
 }
 
@@ -817,6 +816,19 @@ input = 123;          //valid!
 input = {             //error!
     words: "ok"
 }
+```
+
+---
+
+###  Union types
+
+```typescript
+interface AjaxOptions {
+    url: string;
+    type: string;
+}
+
+function ajaxRequest(urlOrOptions: string | AjaxOptions) {}
 ```
 
 ---
@@ -882,13 +894,8 @@ function extend<T, U>(first: T, second: U): T & U {
 ### Intersection types
 
 ```typescript
-interface Dog {
-    breed: string;
-}
-
-interface Dinosaur {
-    hasSharpTeeth: boolean;
-}
+interface Dog { breed: string; }
+interface Dinosaur { hasSharpTeeth: boolean; }
 
 let dog: Dog = { breed: "Poodle" };
 let velociraptor: Dinosaur = { hasSharpTeeth: true };
@@ -897,12 +904,11 @@ let abomination = extend(dog, velociraptor);
 
 console.log(abomination.breed);         //valid!
 console.log(abomination.hasSharpTeeth); //valid!
-
 ```
 
 ---
 
-###  You can do some crazy things
+###  You can do some cool things
 
 From TypeScript documentation: 
 
@@ -940,7 +946,7 @@ type jAngular = typeof jQuery
 
 ---
 
-###  Aliases are also useful for strictNullChecks
+###  Aliases are also useful for `strictNullChecks`
 
 If compiler option `--strictNullChecks` is on...
 
@@ -1063,10 +1069,6 @@ function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
   return names.map(n => o[n]);
 }
 
-interface Person {
-    firstName: string;
-    age: number;
-}
 let person: Person = {
     firstName: 'Jarid',
     age: 35
@@ -1110,7 +1112,6 @@ interface Circle {
     kind: "circle";
     radius: number;
 }
-
 type Shape = Circle | Rectangle | Square;
 ```
 
@@ -1276,6 +1277,7 @@ interface PersonOkResponse {
 ###  Error type using `keyof`
 
 ```typescript
+//indexed type and keyof
 interface BadRequestResponse<TRequest> {
     message: string;
     modelState: {
@@ -1294,15 +1296,10 @@ interface BadRequestResponse<TRequest> {
     };
 }
 
-interface PersonPostRequest {
-    firstName: string;
-    lastName: string;
-}
+interface PersonPostRequest { firstName: string; lastName: string; }
+interface PersonOkResponse { id: number; }
 
-interface PersonOkResponse {
-    id: number;
-}
-
+//union type
 type PersonResponse = 
     PersonOkResponse | BadRequestResponse<PersonPostRequest>
 ```
@@ -1312,6 +1309,9 @@ type PersonResponse =
 ### Create your request method
 
 ```typescript
+type PersonResponse = 
+    PersonOkResponse | BadRequestResponse<PersonPostRequest>
+
 function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
     return fetch("api/Persons", request)
         .then(data => data.json() as Promise<PersonResponse>);
@@ -1323,11 +1323,13 @@ function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
 ###  Use a type guard to handle correct response
 
 ```typescript
+//type guard
 function isErrorResponse(response: PersonResponse) 
     : response is BadRequestResponse<PersonPostRequest> {
     return (response as BadRequestResponse<PersonPostRequest>).modelState !== undefined;
 }
 
+//type guard compile time awesomeness!
 function handleResponse(response: PersonResponse) {
     if (isErrorResponse(response)) {
         console.log(response.modelState.firstName[0]);  //or whatever...
@@ -1335,7 +1337,6 @@ function handleResponse(response: PersonResponse) {
         console.log(response.id);
     }
 }
-
 ```
 
 --- 
