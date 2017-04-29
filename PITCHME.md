@@ -70,7 +70,7 @@ basic type usage
 
 ![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
 
-These are great reasons to use TypeScript
+Those are great reasons to use TypeScript
 
 ---
 
@@ -97,14 +97,18 @@ Equally good - TypeScript's awesome type system
 Variables and functions will be given types by TypeScript where possible
 
 ```typescript
+
 let aNumber = 42;   //aNumber is inferred to be type 'number'
+
 ```
 
 If you mix types, TypeScript will show an error
 
 ```typescript
+
 let aNumber = 42;
 aNumber = "forty two";  //Error: aNumber is of type number
+
 ```
 
 ---
@@ -114,7 +118,9 @@ aNumber = "forty two";  //Error: aNumber is of type number
 You can add type annotations to your variables
 
 ```typescript
+
 let aNumber: number = 42;
+
 ```
 
 Explicitly marks variable as a type  
@@ -127,6 +133,7 @@ Useful when you don't know value ahead of time
 In JavaScript, it's a free-for-all
 
 ```typescript
+
 function printNameAndAge(name, age) {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
@@ -135,6 +142,7 @@ function printNameAndAge(name, age) {
 printNameAndAge("Spencer", 30);
 printNameAndAge();  //totally valid
 printNameAndAge("Jeff", "Jon", "Jay", "old");
+
 ```
 
 ---
@@ -144,6 +152,7 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");
 In TypeScript, it's better enforced
 
 ```typescript
+
 function printNameAndAge(name: string, age: number) {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
@@ -152,6 +161,7 @@ function printNameAndAge(name: string, age: number) {
 printNameAndAge("Spencer", 30);                 //ok
 printNameAndAge();                              //error
 printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
+
 ```
 
 ---
@@ -161,10 +171,12 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
 In addition to parameters...
 
 ```typescript
+
 function printNameAndAge(name: string, age: number) : void {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
 }
+
 ```
 
 You can add type annotations to functions to explicitly set a return type
@@ -176,12 +188,14 @@ You can add type annotations to functions to explicitly set a return type
 This is compile-time enforced
 
 ```typescript
+
 function operate(num1: number, num2: number, op: string): number {
     if (op === "add") {
         return num1 + num2;
     }
     //ERROR: return missing
 }
+
 ```
 
 ---
@@ -208,10 +222,12 @@ If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
 ## Here's an interface
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName; string;
 }
+
 ```
 
 ---
@@ -221,6 +237,7 @@ interface Person {
 The "shape" of the object is what counts
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName: string;
@@ -234,6 +251,7 @@ addPerson({
     firstName: "John",
     lastName: "Lackey"
 });     //totally valid
+
 ```
 
 ---
@@ -243,6 +261,7 @@ addPerson({
 The "shape" of the object is what counts
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName: string;
@@ -256,6 +275,7 @@ addPerson({
     firstName: "Matt"
 
 })      //fails
+
 ```
 
 ---
@@ -263,10 +283,12 @@ addPerson({
 ## Optional properties
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName?: string;
 }
+
 ```
 
 ---
@@ -274,6 +296,7 @@ interface Person {
 ## Optional properties
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName?: string;
@@ -286,6 +309,7 @@ function addPerson(newPerson: Person) {
 addPerson({
     firstName: "Matt"
 })      //valid!
+
 ```
 
 ---
@@ -301,9 +325,11 @@ TS docs
 ## Function types
 
 ```typescript
+
 interface Logger {
     (message: string, severity: string): void;
 }
+
 ```
 
 ---
@@ -311,6 +337,7 @@ interface Logger {
 ## Function types
 
 ```typescript
+
 interface Logger {
     (message: string, severity: string): void;
 }
@@ -318,6 +345,7 @@ interface Logger {
 let aLogger: Logger = (message, severity) => {
     //log to console?
 }
+
 ```
 
 ---
@@ -327,9 +355,11 @@ let aLogger: Logger = (message, severity) => {
 Specifies a type as "indexable"
 
 ```typescript
+
 interface NumberDictionary {
     [index: string]: number;
 }
+
 ```
 
 The index type must be a number or string  
@@ -352,6 +382,7 @@ Useful for enforcing the return type of an index
 Interfaces don't compile down to anything
 
 ```typescript
+
 ////Person.ts
 interface Person {
     firstName: string;
@@ -360,6 +391,7 @@ interface Person {
 
 ////Person.js
 //nothing here!
+
 ```
 
 Use them to give meaning to your code
@@ -371,6 +403,7 @@ Use them to give meaning to your code
 Allows you to define reusable constraints on types
 
 ```typescript
+
 let thePersons: Array<Person> = [];
 
 thePersons.push({
@@ -379,13 +412,8 @@ thePersons.push({
 });
 
 thePersons.push("John Lackey");     //error
+
 ```
-
----
-
-## Generics: TODO
-
-generic constraints
 
 ---
 
@@ -394,6 +422,7 @@ generic constraints
 Groups of data and actions, like C#/VB.NET classes
 
 ```typescript
+
 class Animal {
     string: name;
     
@@ -401,6 +430,7 @@ class Animal {
         console.log(`${this.name} moved.`);
     }
 }
+
 ```
 
 ---
@@ -410,6 +440,7 @@ class Animal {
 Classes can implement interfaces
 
 ```typescript
+
 interface Person {
     firstName: string;
     lastName: string;
@@ -420,6 +451,7 @@ class Employee implements Person {
     lastName: string;
     dateHired: Date;
 }
+
 ```
 
 ---
@@ -989,6 +1021,20 @@ pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 
 ---
 
+## Note the use of a generic constraint
+
+Yes, TypeScript has those as well!
+
+```typescript
+
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+  return names.map(n => o[n]);
+}
+
+```
+
+---
+
 ## Discriminated Unions
 
 Used to "tag" types with specific data. From the TypeScript docs:
@@ -1094,6 +1140,151 @@ function area(s: Shape) {
 
 ## Real world example
 
-Yes, that's right - a real world example!
+Let's wrap some things together
 
-TODO
+---
+
+## Your backend
+
+Let's use ASP.NET as our example
+
+```csharp
+
+public class PersonPostRequest
+{
+    [Required]
+    public string FirstName { get; set; }
+    [Required]
+    public string LastName { get; set; }
+}
+
+public PersonController : Controller
+{
+    public IActionResult Post(PersonPostRequest personPostRequest)
+    {
+        if (ModelState.IsValid)
+        {
+            //save!
+            return Ok(new IdResponse { Id = newPerson.Id });
+        }
+        else
+        {
+            return BadRequest(ModelState);
+        }
+    }
+}
+
+```
+
+---
+
+## Your post request can return either
+
+`200 OK`
+
+```json
+
+
+
+```
+
+or
+
+`400 Bad Request`
+
+```json
+
+{
+    "message": "The request is invalid.",
+    "modelState": {
+        "firstName": [
+            "First name is required."
+        ]
+    }
+}
+
+```
+
+---
+
+## Modeling this in TypeScript
+
+```typescript
+
+interface PersonPostRequest {
+    firstName: string;
+    lastName: string;
+}
+
+interface PersonOkResponse {
+    id: number;
+}
+
+```
+
+---
+
+## Error type
+
+```typescript
+
+interface BadRequestResponse<TRequest> {
+    message: string;
+    modelState: {
+        [K in keyof TRequest]: string[];
+    };
+}
+
+```
+
+---
+
+## Putting them together
+
+```typescript
+
+interface ModelStateErrors<TRequest> {
+    message: string;
+    modelState: {
+        [K in keyof TRequest]?: string[];
+    };
+}
+
+interface PersonPostRequest {
+    firstName: string;
+    lastName: string;
+}
+
+interface PersonOkResponse {
+    id: number;
+}
+
+type PersonResponse = 
+    PersonOkResponse | ModelStateErrors<PersonPostRequest>
+
+```
+
+---
+
+## Use a type guard to handle correct response
+
+```typescript
+
+function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
+    return fetch("api/Persons", request)
+        .then(data => data.json() as Promise<PersonResponse>);
+}
+
+function isErrorResponse(response: PersonResponse) : response is ModelStateErrors<PersonPostRequest> {
+    return (response as ModelStateErrors<PersonPostRequest>).modelState !== undefined;
+}
+
+function handleResponse(response: PersonResponse) {
+    if (isErrorResponse(response)) {
+        console.log(response.modelState.firstName[0]);  //or whatever...
+    } else {
+        console.log(response.id);
+    }
+}
+
+```
