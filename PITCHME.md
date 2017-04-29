@@ -10,7 +10,7 @@
 
 Twitter @schneidenbach
 
-Slides plus more at
+## Slides plus more at
 
 typescript.schneids.net
 
