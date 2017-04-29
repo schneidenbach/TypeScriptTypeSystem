@@ -62,7 +62,7 @@ Google
 
 ---
 
-[Standards](https://imgs.xkcd.com/comics/standards.png)
+![Standards](https://imgs.xkcd.com/comics/standards.png)
 
 ---
 
