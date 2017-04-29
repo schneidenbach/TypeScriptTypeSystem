@@ -331,6 +331,40 @@ let aLogger: Logger = (message, severity) => {
 
 ---
 
+###  Function types
+
+```typescript
+interface jQuery {
+    (selector: string): jQueryElement;
+}
+```
+---
+
+###  Function types
+
+```typescript
+interface jQuery {
+    (selector: string): jQueryElement;
+
+    ajax: (url: string, data) => Promise;
+}
+```
+
+---
+
+###  Function types
+
+```typescript
+interface jQuery {
+    (selector: string): jQueryElement;
+
+    ajax: (url: string, data) => Promise;
+    extend: (obj1, obj2) => object;
+}
+```
+
+---
+
 ###  Index types
 
 Specifies a type as "indexable"
@@ -453,8 +487,7 @@ Strongest use cases are inheritance and code reuse
 
 ###  Enums
 
-Enums are just like enums in C# and VB.NET  
-Number based
+Enums are just like enums in C# and VB.NET
 
 ```typescript
 enum Suit { 
@@ -735,6 +768,20 @@ In other words...
 Marks a type as being either or
 
 ```typescript
+let input: number | string;
+
+input = "this";       //valid!
+input = 123;          //valid!
+input = {             //error!
+    words: "ok"
+}
+```
+
+---
+
+###  Union types
+
+```typescript
 interface AjaxOptions {
     url: string;
     type: string;
@@ -751,7 +798,6 @@ function ajaxRequest(urlOrOptions: string | AjaxOptions) {
 }
 
 ```
-
 ---
 
 ###  Intersection types
@@ -791,6 +837,29 @@ function extend<T, U>(first: T, second: U): T & U {
 
 ---
 
+### Intersection types
+
+```typescript
+interface Dog {
+    breed: string;
+}
+
+interface Dinosaur {
+    hasSharpTeeth: boolean;
+}
+
+let dog: Dog = { breed: "Poodle" };
+let velociraptor: Dinosaur = { hasSharpTeeth: true };
+
+let abomination = extend(dog, velociraptor);
+
+console.log(abomination.breed);         //valid!
+console.log(abomination.hasSharpTeeth); //valid!
+
+```
+
+---
+
 ###  You can do some crazy things
 
 From TypeScript documentation: 
@@ -807,7 +876,6 @@ var s = people.name;
 var s = people.next.name;
 var s = people.next.next.name;
 var s = people.next.next.next.name;
-
 ```
 
 ---
@@ -824,15 +892,15 @@ type StringOrNumber = string | number;
 //intersection type
 type jAngular = typeof jQuery  
                 & typeof angular
-                & { isAbomination: boolean };
+                & { isEvil: boolean };
 
 ```
 
 ---
 
-###  Aliases are also useful for strictNullCheck
+###  Aliases are also useful for strictNullChecks
 
-If compiler option `--strictNullCheck` is on...
+If compiler option `--strictNullChecks` is on...
 
 ```typescript
 let aNumber: number = undefined;    //not allowed
@@ -840,7 +908,6 @@ let aNumber: number = undefined;    //not allowed
 type NumberOrUndefined = number | undefined;
 
 let anotherNumber: NumberOrUndefined = undefined;  //ok
-
 ```
 
 ---
@@ -852,9 +919,9 @@ let anotherNumber: NumberOrUndefined = undefined;  //ok
 Can be used in extends or implements clause | Can't be used to extend other interfaces/classes
 Can have multiple merged declarations | Can't have merged declarations
 
-```
+---
 
-###  Example of a merged declaration:
+### Example of a merged declaration:
 
 ```typescript
 interface Person {
@@ -865,7 +932,6 @@ interface Person {
 interface Person {
     lastName: string;
 }
-
 ```
 
 ---
@@ -883,7 +949,6 @@ let animal = {
 let capturesType: typeof animal = {
     //error unless you set name and legs
 }
-
 ```
 
 ---
@@ -965,8 +1030,8 @@ let person: Person = {
     age: 35
 };
 
-pluck(person, ['firstName']); // ok, string[]
-pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+pluck(person, ['firstName']);      // ok
+pluck(person, ['age', 'unknown']); // error
 
 ```
 
@@ -1005,7 +1070,6 @@ interface Circle {
 }
 
 type Shape = Circle | Rectangle | Square;
-
 ```
 
 ---
@@ -1022,7 +1086,6 @@ function area(s: Shape) {
         case "circle": return Math.PI * s.radius ** 2;
     }
 }
-
 ```
 
 TypeScript's compiler is aware of what type the object is after the `case` statement
@@ -1032,13 +1095,12 @@ TypeScript's compiler is aware of what type the object is after the `case` state
 ###  `never` type
 
 A type that can never be.  
-`never` can only represent "impossible" types or never types.
+`never` can only represent "impossible" types or `never` types.
 
 ```typescript
 let cantExist: never;
 
 cantExist = "something";    //error!
-
 ```
 
 ---
@@ -1078,7 +1140,6 @@ function area(s: Shape) {
     }
     //error - didn't handle Triangle!
 }
-
 ```
 
 ---
@@ -1089,7 +1150,7 @@ Let's wrap some things together
 
 ---
 
-###  Your backend
+### The backend
 
 Let's use ASP.NET as our example
 
@@ -1101,7 +1162,13 @@ public class PersonPostRequest
     [Required]
     public string LastName { get; set; }
 }
+```
 
+---
+
+### The handler
+
+```csharp
 public PersonController : Controller
 {
     public IActionResult Post(PersonPostRequest personPostRequest)
@@ -1113,6 +1180,7 @@ public PersonController : Controller
         }
         else
         {
+            //try again
             return BadRequest(ModelState);
         }
     }
@@ -1145,7 +1213,6 @@ or
         ]
     }
 }
-
 ```
 
 ---
@@ -1161,7 +1228,6 @@ interface PersonPostRequest {
 interface PersonOkResponse {
     id: number;
 }
-
 ```
 
 ---
@@ -1175,7 +1241,6 @@ interface BadRequestResponse<TRequest> {
         [K in keyof TRequest]: string[];
     };
 }
-
 ```
 
 ---
@@ -1183,7 +1248,7 @@ interface BadRequestResponse<TRequest> {
 ###  Putting them together
 
 ```typescript
-interface ModelStateErrors<TRequest> {
+interface BadRequestResponse<TRequest> {
     message: string;
     modelState: {
         [K in keyof TRequest]?: string[];
@@ -1200,7 +1265,7 @@ interface PersonOkResponse {
 }
 
 type PersonResponse = 
-    PersonOkResponse | ModelStateErrors<PersonPostRequest>
+    PersonOkResponse | BadRequestResponse<PersonPostRequest>
 
 ```
 
@@ -1222,8 +1287,8 @@ function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
 
 ```typescript
 function isErrorResponse(response: PersonResponse) 
-    : response is ModelStateErrors<PersonPostRequest> {
-    return (response as ModelStateErrors<PersonPostRequest>).modelState !== undefined;
+    : response is BadRequestResponse<PersonPostRequest> {
+    return (response as BadRequestResponse<PersonPostRequest>).modelState !== undefined;
 }
 
 function handleResponse(response: PersonResponse) {
