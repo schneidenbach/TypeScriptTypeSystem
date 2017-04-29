@@ -99,7 +99,8 @@ Variables and functions will be given types by TypeScript where possible
 ```typescript
 
 let aNumber = 42;   //aNumber is inferred to be type 'number'
-  
+
+
 ```
 
 If you mix types, TypeScript will show an error
