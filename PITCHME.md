@@ -228,18 +228,6 @@ They are similar, but not the same as .NET interfaces!
 
 ---
 
-###  Duck typing
-
-If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
-
----
-
-###  Duck typing
-
-![PHP? No thanks!](assets/duck.jpg)
-
----
-
 ###  Here's an interface
 
 ```typescript
@@ -295,6 +283,18 @@ addPerson({
 })      //fails
 
 ```
+
+---
+
+###  Duck typing
+
+If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
+
+---
+
+###  Duck typing
+
+![PHP? No thanks!](assets/duck.jpg)
 
 ---
 
