@@ -1,20 +1,20 @@
 ![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
 
-## Deconstructing TypeScript's Type System
+###  Deconstructing TypeScript's Type System
 
-#### Spencer Schneidenbach
+####  Spencer Schneidenbach
 
 @schneidenbach
 
 ---
 
-## What is TypeScript?
+###  What is TypeScript?
 
 ![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
 
 --- 
 
-## Why TypeScript?
+###  Why TypeScript?
 
 Future of JavaScript, Today  
 Better Tooling  
@@ -22,7 +22,7 @@ It's JavaScript That Scales
 
 ---
 
-## Best Thing about TypeScript
+###  Best Thing about TypeScript
 
 > It doesn't try to not be JavaScript - it just tries to make JavaScript better
 
@@ -30,7 +30,7 @@ It's JavaScript That Scales
 
 ---
 
-## Best Thing about TypeScript
+###  Best Thing about TypeScript
 
 > It doesn't try to not be JavaScript - it just tries to make JavaScript better
 
@@ -38,20 +38,20 @@ Me
 
 ---
 
-## Major Companies Are Using TypeScript
+###  Major Companies Are Using TypeScript
 
 Google  
 Slack
 
 ---
 
-## What TypeScript Isn't
+###  What TypeScript Isn't
 
 "C# All The Things"
 
 ---
 
-## What TypeScript Isn't
+###  What TypeScript Isn't
 
 > **TypeScript is manifestly not about turning JavaScript into C#.** You’ll never be best of breed in one ecosystem by attempting to retrofit another ecosystem.
 
@@ -59,7 +59,7 @@ Anders Heljsberg
 
 ---
 
-## Everyone Talks About
+###  Everyone Talks About
 
 async/await  
 classes  
@@ -80,11 +80,11 @@ Equally good - TypeScript's awesome type system
 
 ---
 
-## Let's Dive In
+###  Let's Dive In
 
 ---
 
-## Let's Talk Basics
+###  Let's Talk Basics
 
 `number`, `string`, `boolean`, `array`  
 `null`, `undefined`  
@@ -92,14 +92,14 @@ Equally good - TypeScript's awesome type system
 
 ---
 
-## Implicit Types
+###  Implicit Types
 
 Variables and functions will be given types by TypeScript where possible
 
 ```typescript
 
 let aNumber = 42;   //aNumber is inferred to be type 'number'
-
+  
 ```
 
 If you mix types, TypeScript will show an error
@@ -113,7 +113,7 @@ aNumber = "forty two";  //Error: aNumber is of type number
 
 ---
 
-## Explicit Types
+###  Explicit Types
 
 You can add type annotations to your variables
 
@@ -128,7 +128,7 @@ Useful when you don't know value ahead of time
 
 ---
 
-## Functions
+###  Functions
 
 In JavaScript, it's a free-for-all
 
@@ -147,7 +147,7 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");
 
 ---
 
-## Functions
+###  Functions
 
 In TypeScript, it's better enforced
 
@@ -166,7 +166,7 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
 
 ---
 
-## Functions
+###  Functions
 
 In addition to parameters...
 
@@ -183,7 +183,7 @@ You can add type annotations to functions to explicitly set a return type
 
 ---
 
-## Functions
+###  Functions
 
 This is compile-time enforced
 
@@ -200,26 +200,26 @@ function operate(num1: number, num2: number, op: string): number {
 
 ---
 
-## Interfaces
+###  Interfaces
 
 The types you will use the most  
 They are similar, but not the same as .NET interfaces!
 
 ---
 
-## Duck typing
+###  Duck typing
 
 If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
 
 ---
 
-## Duck typing
+###  Duck typing
 
 ![PHP? No thanks!](assets/duck.jpg)
 
 ---
 
-## Here's an interface
+###  Here's an interface
 
 ```typescript
 
@@ -232,7 +232,7 @@ interface Person {
 
 ---
 
-## Interfaces define structure
+###  Interfaces define structure
 
 The "shape" of the object is what counts
 
@@ -256,7 +256,7 @@ addPerson({
 
 ---
 
-## Interfaces define structure
+###  Interfaces define structure
 
 The "shape" of the object is what counts
 
@@ -280,7 +280,7 @@ addPerson({
 
 ---
 
-## Optional properties
+###  Optional properties
 
 ```typescript
 
@@ -293,7 +293,7 @@ interface Person {
 
 ---
 
-## Optional properties
+###  Optional properties
 
 ```typescript
 
@@ -314,7 +314,7 @@ addPerson({
 
 ---
 
-## But that's not all
+###  But that's not all
 
 > “Interfaces are capable of describing the wide range of shapes that JavaScript objects can take”
 
@@ -322,7 +322,7 @@ TS docs
 
 ---
 
-## Function types
+###  Function types
 
 ```typescript
 
@@ -334,7 +334,7 @@ interface Logger {
 
 ---
 
-## Function types
+###  Function types
 
 ```typescript
 
@@ -350,7 +350,7 @@ let aLogger: Logger = (message, severity) => {
 
 ---
 
-## Index types
+###  Index types
 
 Specifies a type as "indexable"
 
@@ -367,7 +367,7 @@ Useful for enforcing the return type of an index
 
 ---
 
-## We'll revisit index types
+###  We'll revisit index types
 
 ---
 
@@ -375,7 +375,7 @@ Useful for enforcing the return type of an index
 
 ---
 
-## Runtime impact of interfaces?
+###  Runtime impact of interfaces?
 
 ---
 
@@ -398,7 +398,7 @@ Use them to give meaning to your code
 
 ---
 
-## Generics
+###  Generics
 
 Allows you to define reusable constraints on types
 
@@ -417,7 +417,7 @@ thePersons.push("John Lackey");     //error
 
 ---
 
-## Classes
+###  Classes
 
 Groups of data and actions, like C#/VB.NET classes
 
@@ -435,7 +435,7 @@ class Animal {
 
 ---
 
-## Classes
+###  Classes
 
 Classes can implement interfaces
 
@@ -456,7 +456,7 @@ class Employee implements Person {
 
 ---
 
-## Classes
+###  Classes
 
 Classes can inherit from other classes
 
@@ -470,13 +470,13 @@ class SalesRepresentative extends Employee {
 
 ---
 
-## Classes
+###  Classes
 
 Strongest use cases are inheritance and code reuse
 
 ---
 
-## Enums
+###  Enums
 
 Enums are just like enums in C# and VB.NET  
 Number based
@@ -496,7 +496,7 @@ let aSuit: Suit = Suit.Club;
 
 ---
 
-## const Enums
+###  const Enums
 
 Inlines use of the enum
 
@@ -525,7 +525,7 @@ A little more performant
 
 ---
 
-## Enum tip
+###  Enum tip
 
 When using enums, start the enum with number 1
 
@@ -544,7 +544,7 @@ This allows you to assert an enum value as truthy
 
 ---
 
-## String literal types
+###  String literal types
 
 Ooh, new syntax
 
@@ -567,13 +567,13 @@ As far as the `type` syntax goes...
 
 ---
 
-## Enums vs string literals
+###  Enums vs string literals
 
 I prefer string literals, but you might like enum
 
 ---
 
-## Enums vs string literals
+###  Enums vs string literals
 
 Real world:
 
@@ -593,7 +593,7 @@ Otherwise use enums
 
 ---
 
-## Tuples
+###  Tuples
 
 Arrays are commonly used as tuples in JavaScript
 
@@ -605,7 +605,7 @@ let numberPair = [123, "one hundred twenty three"];
 
 ---
 
-## Tuples
+###  Tuples
 
 You can add type annotations to enforce the "tuple" type
 
@@ -623,8 +623,8 @@ printNumbers(["two", 2]);   //error
 
 ---
 
-## Type assertions
-## Type guards
+###  Type assertions
+###  Type guards
 
 But before we do...
 
@@ -634,14 +634,14 @@ Let's talk about `instanceof` vs `typeof` briefly
 
 ---
 
-## `typeof`
+###  `typeof`
 
 Returns a `string`  
 Used to compare primitives
 
 ---
 
-## `typeof`
+###  `typeof`
 
 Code | Returns
 ---- | ------
@@ -655,7 +655,7 @@ Code | Returns
 
 ---
 
-## `typeof`
+###  `typeof`
 
 TypeScript is contextually aware when you're in a `typeof` block
 
@@ -673,7 +673,7 @@ function printLowerCase(arg: any) {
 
 ---
 
-## `instanceof`
+###  `instanceof`
 
 Inspects the prototype chain
 
@@ -691,7 +691,7 @@ console.log(person instanceof Date);    //false
 
 ---
 
-## Just one problem...
+###  Just one problem...
 
 JavaScript lacks sophisticated runtime introspection  
 You can't use `typeof` or `instanceof` to plain JS objects to compare to another object  
@@ -712,7 +712,7 @@ employeeStructurally instanceof Employee;   //false
 
 ---
 
-## Another problem...
+###  Another problem...
 
 Interfaces can't use `instanceof` because they don't exist in JS
 
@@ -732,7 +732,7 @@ personStructurally instanceof Person;   //error!
 
 ---
 
-## Solution: type guards
+###  Solution: type guards
 
 We can add user-defined type guards like so:
 
@@ -767,7 +767,7 @@ In other words...
 
 ---
 
-## Union types
+###  Union types
 
 Marks a type as being either or
 
@@ -792,7 +792,7 @@ function ajaxRequest(urlOrOptions: string | AjaxOptions) {
 
 ---
 
-## Intersection types
+###  Intersection types
 
 Ever seen this before?
 
@@ -808,7 +808,7 @@ Result is the same - `objectOne` now has all of the properties from `objectTwo`
 
 ---
 
-## Intersection types
+###  Intersection types
 
 Represents two or more types combined into one
 
@@ -831,7 +831,7 @@ function extend<T, U>(first: T, second: U): T & U {
 
 ---
 
-## You can do some crazy things
+###  You can do some crazy things
 
 From TypeScript documentation: 
 
@@ -853,7 +853,7 @@ var s = people.next.next.next.name;
 
 ---
 
-## Type aliases
+###  Type aliases
 
 Incredibly useful for union and intersection types  
 Defines types you can use over and over again
@@ -872,7 +872,7 @@ type jAngular = typeof jQuery
 
 ---
 
-## Aliases are also useful for strictNullCheck
+###  Aliases are also useful for strictNullCheck
 
 If compiler option `--strictNullCheck` is on...
 
@@ -888,14 +888,16 @@ let anotherNumber: NumberOrUndefined = undefined;  //ok
 
 ---
 
-## Type aliases vs interfaces
+###  Type aliases vs interfaces
 
 *Interface* | *Type Alias*
 ----------- | ------------
 Can be used in extends or implements clause | Can't be used to extend other interfaces/classes
 Can have multiple merged declarations | Can't have merged declarations
 
-Example of a merged declaration:
+```
+
+###  Example of a merged declaration:
 
 ```typescript
 
@@ -912,7 +914,7 @@ interface Person {
 
 ---
 
-## Type capture
+###  Type capture
 
 You can capture the type of another variable:
 
@@ -931,7 +933,7 @@ let capturesType: typeof animal = {
 
 ---
 
-## `keyof`
+###  `keyof`
 
 Used to capture the keys (or property names) of another type.
 
@@ -952,7 +954,7 @@ animalKey = "anythingElse";     //ERROR
 
 ---
 
-## Using `keyof` with indexed types
+###  Using `keyof` with indexed types
 
 ```typescript
 
@@ -975,7 +977,7 @@ let personDescriptions: Descriptions<Person> = {
 
 ---
 
-## Create some interesting types
+###  Create some interesting types
 
 How about a type that takes the properties of another and makes them readonly?  
 
@@ -993,11 +995,9 @@ type ReadonlyPerson = Readonly<Person>;
 
 ---
 
-## Implementing pluck using `keyof` for type safety
+###  Implementing pluck using `keyof` for type safety
 
-Pluck is a common function used to take properties from an object.
-
-From the TypeScript docs:
+Pluck is used to take properties from an object.
 
 ```typescript
 
@@ -1021,7 +1021,7 @@ pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 
 ---
 
-## Note the use of a generic constraint
+###  Note the use of a generic constraint
 
 Yes, TypeScript has those as well!
 
@@ -1035,7 +1035,7 @@ function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
 
 ---
 
-## Discriminated Unions
+###  Discriminated Unions
 
 Used to "tag" types with specific data. From the TypeScript docs:
 
@@ -1061,7 +1061,7 @@ type Shape = Circle | Rectangle | Square;
 
 ---
 
-## Now we can do stuff like this
+###  Now we can do stuff like this
 
 ```typescript
 
@@ -1081,7 +1081,7 @@ TypeScript's compiler is aware of what type the object is after the `case` state
 
 ---
 
-## `never` type
+###  `never` type
 
 A type that can never be.  
 `never` can only represent "impossible" types or never types.
@@ -1096,7 +1096,7 @@ cantExist = "something";    //error!
 
 ---
 
-## Use it with discriminated unions
+###  Use it with discriminated unions
 
 Gives the TypeScript compiler exhaustive checking
 
@@ -1119,7 +1119,7 @@ function area(s: Shape) {
 
 ---
 
-## If we ever extend Shape, we'll be protected
+###  If we ever extend Shape, we'll be protected
 
 ```typescript
 
@@ -1138,13 +1138,13 @@ function area(s: Shape) {
 
 ---
 
-## Real world example
+###  Real world example
 
 Let's wrap some things together
 
 ---
 
-## Your backend
+###  Your backend
 
 Let's use ASP.NET as our example
 
@@ -1178,7 +1178,7 @@ public PersonController : Controller
 
 ---
 
-## Your post request can return either
+###  Your post request can return either
 
 `200 OK`
 
@@ -1207,7 +1207,7 @@ or
 
 ---
 
-## Modeling this in TypeScript
+###  Modeling this in TypeScript
 
 ```typescript
 
@@ -1224,7 +1224,7 @@ interface PersonOkResponse {
 
 ---
 
-## Error type
+###  Error type
 
 ```typescript
 
@@ -1239,7 +1239,7 @@ interface BadRequestResponse<TRequest> {
 
 ---
 
-## Putting them together
+###  Putting them together
 
 ```typescript
 
@@ -1266,7 +1266,7 @@ type PersonResponse =
 
 ---
 
-## Use a type guard to handle correct response
+###  Use a type guard to handle correct response
 
 ```typescript
 
