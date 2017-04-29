@@ -799,6 +799,28 @@ function extend<T, U>(first: T, second: U): T & U {
 
 ---
 
+## You can do some crazy things
+
+From TypeScript documentation: 
+
+```typescript
+
+type LinkedList<T> = T & { next: LinkedList<T> };
+
+interface Person {
+    name: string;
+}
+
+var people: LinkedList<Person>;
+var s = people.name;
+var s = people.next.name;
+var s = people.next.next.name;
+var s = people.next.next.next.name;
+
+```
+
+---
+
 ## Type aliases
 
 Incredibly useful for union and intersection types  
@@ -809,11 +831,16 @@ Defines types you can use over and over again
 //union type
 type StringOrNumber = string | number;
 
-
+//intersection type
+type jAngular = typeof jQuery  
+                & typeof angular
+                & { isAbomination: boolean };
 
 ```
 
-## Also useful for strictNullCheck
+---
+
+## Aliases are also useful for strictNullCheck
 
 If compiler option `--strictNullCheck` is on...
 
@@ -827,3 +854,36 @@ let anotherNumber: NumberOrUndefined = undefined;  //ok
 
 ```
 
+---
+
+## Type aliases vs interfaces
+
+TODO
+
+---
+
+## `keyof`
+
+TODO
+
+---
+
+## Discriminated Unions
+
+TODO
+
+---
+
+## `never` type
+
+A type that can never be.
+
+TODO
+
+---
+
+## Wrapping it all together
+
+Yes, that's right - a real world example!
+
+TODO
