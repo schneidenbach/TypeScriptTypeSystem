@@ -115,10 +115,9 @@ Equally good - TypeScript's awesome type system
 
 ###  Let's Talk Basics
 
-`number`, `string`, `boolean`, `array`  
+`number`, `string`, `boolean`
 `null`, `undefined`  
-`any`
-
+`array`
 ---
 
 ###  Implicit Types
@@ -152,6 +151,8 @@ Useful when you don't know value ahead of time
 ---
 
 ###  Explicit Types Useful for Gradual Refactoring
+
+`any` types
 
 ```typescript
 let anAmbiguousType: any = 42;
@@ -1200,6 +1201,7 @@ public class PersonPostRequest
 {
     [Required]
     public string FirstName { get; set; }
+
     [Required]
     public string LastName { get; set; }
 }
@@ -1231,7 +1233,7 @@ public PersonController : Controller
 
 ---
 
-###  Your post request can return either
+#### Your POST request can return either
 
 `200 OK`
 
@@ -1240,8 +1242,6 @@ public PersonController : Controller
     "id": 1234
 }
 ```
-
-or
 
 `400 Bad Request`
 
@@ -1273,7 +1273,7 @@ interface PersonOkResponse {
 
 ---
 
-###  Error type
+###  Error type using `keyof`
 
 ```typescript
 interface BadRequestResponse<TRequest> {
@@ -1285,8 +1285,6 @@ interface BadRequestResponse<TRequest> {
 ```
 
 ---
-
-###  Putting them together
 
 ```typescript
 interface BadRequestResponse<TRequest> {
@@ -1307,13 +1305,11 @@ interface PersonOkResponse {
 
 type PersonResponse = 
     PersonOkResponse | BadRequestResponse<PersonPostRequest>
-
 ```
 
 ---
 
 ### Create your request method
-
 
 ```typescript
 function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
@@ -1348,6 +1344,14 @@ function handleResponse(response: PersonResponse) {
 
 ---
 
+### More resources
+
+typescript.schneids.net  
+typescriptlang.org
+
+---
+
 ## Thank you!
 
-[@schneidenbach](https://twitter.com/schneidenbach)
+[@schneidenbach](https://twitter.com/schneidenbach)  
+schneids.net
