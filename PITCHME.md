@@ -1345,6 +1345,10 @@ function handleResponse(response: PersonResponse) {
 
 ---
 
+### Getting Started
+
+---
+
 ### More resources
 
 typescript.schneids.net  
