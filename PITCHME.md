@@ -858,31 +858,241 @@ let anotherNumber: NumberOrUndefined = undefined;  //ok
 
 ## Type aliases vs interfaces
 
-TODO
+*Interface* | *Type Alias*
+----------- | ------------
+Can be used in extends or implements clause | Can't be used to extend other interfaces/classes
+Can have multiple merged declarations | Can't have merged declarations
+
+Example of a merged declaration:
+
+```typescript
+
+interface Person {
+    firstName: string;
+}
+
+//declared later
+interface Person {
+    lastName: string;
+}
+
+```
+
+---
+
+## Type capture
+
+You can capture the type of another variable:
+
+```typescript
+
+let animal = {
+    name: "Cat",
+    legs: 4
+};
+
+let capturesType: typeof animal = {
+    //error unless you set name and legs
+}
+
+```
 
 ---
 
 ## `keyof`
 
-TODO
+Used to capture the keys (or property names) of another type.
+
+```typescript
+
+let animal = {
+    name: "Cat",
+    legs: 4
+};
+
+let animalKey: keyof typeof animal;
+
+animalKey = "name";     //ok!
+animalKey = "legs":     //ok!
+animalKey = "anythingElse";     //ERROR
+
+```
+
+---
+
+## Using `keyof` with indexed types
+
+```typescript
+
+interface Person {
+    firstName: string;
+    lastName: string;
+    age: number;
+}
+
+type Descriptions<T> = {
+    [P in keyof T]?: string;
+}
+
+let personDescriptions: Descriptions<Person> = {
+    firstName: "The person's first name.",
+    age: "How old the person is."
+}
+
+```
+
+---
+
+## Create some interesting types
+
+How about a type that takes the properties of another and makes them readonly?  
+
+From the TypeScript docs:
+
+```typescript
+
+type Readonly<T> = {
+    readonly [P in keyof T]: T[P];
+}
+
+type ReadonlyPerson = Readonly<Person>;
+
+```
+
+---
+
+## Implementing pluck using `keyof` for type safety
+
+Pluck is a common function used to take properties from an object.
+
+From the TypeScript docs:
+
+```typescript
+
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+  return names.map(n => o[n]);
+}
+
+interface Person {
+    firstName: string;
+    age: number;
+}
+let person: Person = {
+    firstName: 'Jarid',
+    age: 35
+};
+
+pluck(person, ['firstName']); // ok, string[]
+pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+
+```
 
 ---
 
 ## Discriminated Unions
 
-TODO
+Used to "tag" types with specific data. From the TypeScript docs:
+
+```typescript
+
+interface Square {
+    kind: "square";
+    size: number;
+}
+interface Rectangle {
+    kind: "rectangle";
+    width: number;
+    height: number;
+}
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+
+type Shape = Circle | Rectangle | Square;
+
+```
+
+---
+
+## Now we can do stuff like this
+
+```typescript
+
+type Shape = Circle | Rectangle | Square;
+
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+    }
+}
+
+```
+
+TypeScript's compiler is aware of what type the object is after the `case` statement
 
 ---
 
 ## `never` type
 
-A type that can never be.
+A type that can never be.  
+`never` can only represent "impossible" types or never types.
 
-TODO
+```typescript
+
+let cantExist: never;
+
+cantExist = "something";    //error!
+
+```
 
 ---
 
-## Wrapping it all together
+## Use it with discriminated unions
+
+Gives the TypeScript compiler exhaustive checking
+
+```typescript
+
+function assertNever(x: never): never {
+    throw new Error("Unexpected object: " + x);
+}
+
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+        default: return assertNever(s); //error
+    }
+}
+
+```
+
+---
+
+## If we ever extend Shape, we'll be protected
+
+```typescript
+
+type Shape = Square | Rectangle | Circle | Triangle;
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+        default: return assertNever(s);
+    }
+    //error - didn't handle Triangle!
+}
+
+```
+
+---
+
+## Real world example
 
 Yes, that's right - a real world example!
 
