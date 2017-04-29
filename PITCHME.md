@@ -97,19 +97,14 @@ Equally good - TypeScript's awesome type system
 Variables and functions will be given types by TypeScript where possible
 
 ```typescript
-
 let aNumber = 42;   //aNumber is inferred to be type 'number'
-
-
 ```
 
 If you mix types, TypeScript will show an error
 
 ```typescript
-
 let aNumber = 42;
 aNumber = "forty two";  //Error: aNumber is of type number
-
 ```
 
 ---
@@ -119,9 +114,7 @@ aNumber = "forty two";  //Error: aNumber is of type number
 You can add type annotations to your variables
 
 ```typescript
-
 let aNumber: number = 42;
-
 ```
 
 Explicitly marks variable as a type  
@@ -134,7 +127,6 @@ Useful when you don't know value ahead of time
 In JavaScript, it's a free-for-all
 
 ```typescript
-
 function printNameAndAge(name, age) {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
@@ -143,7 +135,6 @@ function printNameAndAge(name, age) {
 printNameAndAge("Spencer", 30);
 printNameAndAge();  //totally valid
 printNameAndAge("Jeff", "Jon", "Jay", "old");
-
 ```
 
 ---
@@ -153,7 +144,6 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");
 In TypeScript, it's better enforced
 
 ```typescript
-
 function printNameAndAge(name: string, age: number) {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
@@ -162,7 +152,6 @@ function printNameAndAge(name: string, age: number) {
 printNameAndAge("Spencer", 30);                 //ok
 printNameAndAge();                              //error
 printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
-
 ```
 
 ---
@@ -172,7 +161,6 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
 In addition to parameters...
 
 ```typescript
-
 function printNameAndAge(name: string, age: number) : void {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
@@ -189,7 +177,6 @@ You can add type annotations to functions to explicitly set a return type
 This is compile-time enforced
 
 ```typescript
-
 function operate(num1: number, num2: number, op: string): number {
     if (op === "add") {
         return num1 + num2;
@@ -223,7 +210,6 @@ If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
 ###  Here's an interface
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName; string;
@@ -238,7 +224,6 @@ interface Person {
 The "shape" of the object is what counts
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName: string;
@@ -262,7 +247,6 @@ addPerson({
 The "shape" of the object is what counts
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName: string;
@@ -284,7 +268,6 @@ addPerson({
 ###  Optional properties
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName?: string;
@@ -297,7 +280,6 @@ interface Person {
 ###  Optional properties
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName?: string;
@@ -326,7 +308,6 @@ TS docs
 ###  Function types
 
 ```typescript
-
 interface Logger {
     (message: string, severity: string): void;
 }
@@ -338,7 +319,6 @@ interface Logger {
 ###  Function types
 
 ```typescript
-
 interface Logger {
     (message: string, severity: string): void;
 }
@@ -356,7 +336,6 @@ let aLogger: Logger = (message, severity) => {
 Specifies a type as "indexable"
 
 ```typescript
-
 interface NumberDictionary {
     [index: string]: number;
 }
@@ -383,7 +362,6 @@ Useful for enforcing the return type of an index
 Interfaces don't compile down to anything
 
 ```typescript
-
 ////Person.ts
 interface Person {
     firstName: string;
@@ -404,7 +382,6 @@ Use them to give meaning to your code
 Allows you to define reusable constraints on types
 
 ```typescript
-
 let thePersons: Array<Person> = [];
 
 thePersons.push({
@@ -423,7 +400,6 @@ thePersons.push("John Lackey");     //error
 Groups of data and actions, like C#/VB.NET classes
 
 ```typescript
-
 class Animal {
     string: name;
     
@@ -441,7 +417,6 @@ class Animal {
 Classes can implement interfaces
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName: string;
@@ -462,7 +437,6 @@ class Employee implements Person {
 Classes can inherit from other classes
 
 ```typescript
-
 class SalesRepresentative extends Employee {
     salesCode: string;
 }
@@ -483,7 +457,6 @@ Enums are just like enums in C# and VB.NET
 Number based
 
 ```typescript
-
 enum Suit { 
     Heart,
     Spade,
@@ -502,7 +475,6 @@ let aSuit: Suit = Suit.Club;
 Inlines use of the enum
 
 ```typescript
-
 const enum Suit { 
     Heart,
     Spade,
@@ -517,7 +489,6 @@ let aSuit: Suit = Suit.Club;
 Compiles to:
 
 ```typescript
-
 let aSuit = 3;
 
 ```
@@ -531,7 +502,6 @@ A little more performant
 When using enums, start the enum with number 1
 
 ```typescript
-
 enum Suit { 
     Heart = 1,
     Spade,
@@ -550,7 +520,6 @@ This allows you to assert an enum value as truthy
 Ooh, new syntax
 
 ```typescript
-
 type Suit = "Heart" | "Diamond" | "Spade" | "Club";
 
 let aSuit: Suit = "Heart";
@@ -599,7 +568,6 @@ Otherwise use enums
 Arrays are commonly used as tuples in JavaScript
 
 ```typescript
-
 let numberPair = [123, "one hundred twenty three"];
 
 ```
@@ -611,7 +579,6 @@ let numberPair = [123, "one hundred twenty three"];
 You can add type annotations to enforce the "tuple" type
 
 ```typescript
-
 function printNumbers(aNumberTuple: [number, string]) {
     console.log(`${aNumberTuple[0]}` `${aNumberTuple[1]}`);
 }
@@ -661,7 +628,6 @@ Code | Returns
 TypeScript is contextually aware when you're in a `typeof` block
 
 ```typescript
-
 function printLowerCase(arg: any) {
     if (typeof arg === "string") {
         console.log(arg.toLowerCase());
@@ -679,7 +645,6 @@ function printLowerCase(arg: any) {
 Inspects the prototype chain
 
 ```typescript
-
 class Person {
     firstName: string;
 }
@@ -699,7 +664,6 @@ You can't use `typeof` or `instanceof` to plain JS objects to compare to another
 (Well, you can, but it wouldn't be very useful)
 
 ```typescript
-
 let employee = new Employee("John");
 let employeeStructurally = {
     firstName: "John"
@@ -718,7 +682,6 @@ employeeStructurally instanceof Employee;   //false
 Interfaces can't use `instanceof` because they don't exist in JS
 
 ```typescript
-
 interface Person {
     firstName: string;
 }
@@ -738,7 +701,6 @@ personStructurally instanceof Person;   //error!
 We can add user-defined type guards like so:
 
 ```typescript
-
 function isFish(pet: Fish | Bird): pet is Fish {
     return (<Fish>pet).swim !== undefined;
 }
@@ -773,7 +735,6 @@ In other words...
 Marks a type as being either or
 
 ```typescript
-
 interface AjaxOptions {
     url: string;
     type: string;
@@ -798,7 +759,6 @@ function ajaxRequest(urlOrOptions: string | AjaxOptions) {
 Ever seen this before?
 
 ```typescript
-
 Object.assign(objectOne, objectTwo);
 angular.extend(objectOne, objectTwo);
 $.extend(objectOne, objectTwo);
@@ -814,7 +774,6 @@ Result is the same - `objectOne` now has all of the properties from `objectTwo`
 Represents two or more types combined into one
 
 ```typescript
-
 function extend<T, U>(first: T, second: U): T & U {
     let result = <T & U>{};
     for (let id in first) {
@@ -837,7 +796,6 @@ function extend<T, U>(first: T, second: U): T & U {
 From TypeScript documentation: 
 
 ```typescript
-
 type LinkedList<T> = T & { next: LinkedList<T> };
 
 interface Person {
@@ -860,7 +818,6 @@ Incredibly useful for union and intersection types
 Defines types you can use over and over again
 
 ```typescript
-
 //union type
 type StringOrNumber = string | number;
 
@@ -878,7 +835,6 @@ type jAngular = typeof jQuery
 If compiler option `--strictNullCheck` is on...
 
 ```typescript
-
 let aNumber: number = undefined;    //not allowed
 
 type NumberOrUndefined = number | undefined;
@@ -901,7 +857,6 @@ Can have multiple merged declarations | Can't have merged declarations
 ###  Example of a merged declaration:
 
 ```typescript
-
 interface Person {
     firstName: string;
 }
@@ -920,7 +875,6 @@ interface Person {
 You can capture the type of another variable:
 
 ```typescript
-
 let animal = {
     name: "Cat",
     legs: 4
@@ -939,7 +893,6 @@ let capturesType: typeof animal = {
 Used to capture the keys (or property names) of another type.
 
 ```typescript
-
 let animal = {
     name: "Cat",
     legs: 4
@@ -958,7 +911,6 @@ animalKey = "anythingElse";     //ERROR
 ###  Using `keyof` with indexed types
 
 ```typescript
-
 interface Person {
     firstName: string;
     lastName: string;
@@ -985,7 +937,6 @@ How about a type that takes the properties of another and makes them readonly?
 From the TypeScript docs:
 
 ```typescript
-
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 }
@@ -1001,7 +952,6 @@ type ReadonlyPerson = Readonly<Person>;
 Pluck is used to take properties from an object.
 
 ```typescript
-
 function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
   return names.map(n => o[n]);
 }
@@ -1027,7 +977,6 @@ pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 Yes, TypeScript has those as well!
 
 ```typescript
-
 function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
   return names.map(n => o[n]);
 }
@@ -1041,7 +990,6 @@ function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
 Used to "tag" types with specific data. From the TypeScript docs:
 
 ```typescript
-
 interface Square {
     kind: "square";
     size: number;
@@ -1065,7 +1013,6 @@ type Shape = Circle | Rectangle | Square;
 ###  Now we can do stuff like this
 
 ```typescript
-
 type Shape = Circle | Rectangle | Square;
 
 function area(s: Shape) {
@@ -1088,7 +1035,6 @@ A type that can never be.
 `never` can only represent "impossible" types or never types.
 
 ```typescript
-
 let cantExist: never;
 
 cantExist = "something";    //error!
@@ -1102,7 +1048,6 @@ cantExist = "something";    //error!
 Gives the TypeScript compiler exhaustive checking
 
 ```typescript
-
 function assertNever(x: never): never {
     throw new Error("Unexpected object: " + x);
 }
@@ -1123,7 +1068,6 @@ function area(s: Shape) {
 ###  If we ever extend Shape, we'll be protected
 
 ```typescript
-
 type Shape = Square | Rectangle | Circle | Triangle;
 function area(s: Shape) {
     switch (s.kind) {
@@ -1150,7 +1094,6 @@ Let's wrap some things together
 Let's use ASP.NET as our example
 
 ```csharp
-
 public class PersonPostRequest
 {
     [Required]
@@ -1184,9 +1127,9 @@ public PersonController : Controller
 `200 OK`
 
 ```json
-
-
-
+{
+    "id": 1234
+}
 ```
 
 or
@@ -1194,7 +1137,6 @@ or
 `400 Bad Request`
 
 ```json
-
 {
     "message": "The request is invalid.",
     "modelState": {
@@ -1211,7 +1153,6 @@ or
 ###  Modeling this in TypeScript
 
 ```typescript
-
 interface PersonPostRequest {
     firstName: string;
     lastName: string;
@@ -1228,7 +1169,6 @@ interface PersonOkResponse {
 ###  Error type
 
 ```typescript
-
 interface BadRequestResponse<TRequest> {
     message: string;
     modelState: {
@@ -1243,7 +1183,6 @@ interface BadRequestResponse<TRequest> {
 ###  Putting them together
 
 ```typescript
-
 interface ModelStateErrors<TRequest> {
     message: string;
     modelState: {
@@ -1267,16 +1206,23 @@ type PersonResponse =
 
 ---
 
-###  Use a type guard to handle correct response
+### Create your request method
+
 
 ```typescript
-
 function postPerson(request: PersonPostRequest) : Promise<PersonResponse> {
     return fetch("api/Persons", request)
         .then(data => data.json() as Promise<PersonResponse>);
 }
+```
 
-function isErrorResponse(response: PersonResponse) : response is ModelStateErrors<PersonPostRequest> {
+---
+
+###  Use a type guard to handle correct response
+
+```typescript
+function isErrorResponse(response: PersonResponse) 
+    : response is ModelStateErrors<PersonPostRequest> {
     return (response as ModelStateErrors<PersonPostRequest>).modelState !== undefined;
 }
 
@@ -1289,3 +1235,13 @@ function handleResponse(response: PersonResponse) {
 }
 
 ```
+
+--- 
+
+### That's the tip of the iceberg
+
+---
+
+## Thank you!
+
+[@schneidenbach](https://twitter.com/schneidenbach)
