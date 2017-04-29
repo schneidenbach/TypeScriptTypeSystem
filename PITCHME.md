@@ -161,7 +161,7 @@ printNameAndAge("Jeff", "Jon", "Jay", "old");   //def nope
 In addition to parameters...
 
 ```typescript
-function printNameAndAge(name, age) : void {
+function printNameAndAge(name: string, age: number) : void {
     console.log(`Hello ${name}!`);
     console.log(`You are ${age} years old.`);
 }
@@ -176,7 +176,7 @@ You can add type annotations to functions to explicitly set a return type
 This is compile-time enforced
 
 ```typescript
-function operate(num1: number, num2: number, op: string) : number {
+function operate(num1: number, num2: number, op: string): number {
     if (op === "add") {
         return num1 + num2;
     }
@@ -254,6 +254,7 @@ function addPerson(newPerson: Person) {
 
 addPerson({
     firstName: "Matt"
+
 })      //fails
 ```
 
@@ -292,6 +293,7 @@ addPerson({
 ## But that's not all
 
 > “Interfaces are capable of describing the wide range of shapes that JavaScript objects can take”
+
 TS docs
 
 ---
@@ -331,7 +333,7 @@ interface NumberDictionary {
 ```
 
 The index type must be a number or string  
-Useful for enforcing the return type of an indexed type
+Useful for enforcing the return type of an index
 
 ---
 
@@ -343,7 +345,7 @@ Useful for enforcing the return type of an indexed type
 
 ---
 
-## What's the runtime impact of interfaces?
+## Runtime impact of interfaces?
 
 ---
 
@@ -375,6 +377,8 @@ thePersons.push({
     firstName: "John",
     lastName: "Lackey"
 });
+
+thePersons.push("John Lackey");     //error
 ```
 
 ---
@@ -424,10 +428,12 @@ class Employee implements Person {
 
 Classes can inherit from other classes
 
-```
-class SalesRepresentative inherits Employee {
+```typescript
+
+class SalesRepresentative extends Employee {
     salesCode: string;
 }
+
 ```
 
 ---
@@ -444,6 +450,7 @@ Enums are just like enums in C# and VB.NET
 Number based
 
 ```typescript
+
 enum Suit { 
     Heart,
     Spade,
@@ -452,6 +459,7 @@ enum Suit {
 }
 
 let aSuit: Suit = Suit.Club;
+
 ```
 
 ---
@@ -461,6 +469,7 @@ let aSuit: Suit = Suit.Club;
 Inlines use of the enum
 
 ```typescript
+
 const enum Suit { 
     Heart,
     Spade,
@@ -469,12 +478,15 @@ const enum Suit {
 }
 
 let aSuit: Suit = Suit.Club;
+
 ```
 
 Compiles to:
 
 ```typescript
+
 let aSuit = 3;
+
 ```
 
 A little more performant
@@ -486,12 +498,14 @@ A little more performant
 When using enums, start the enum with number 1
 
 ```typescript
+
 enum Suit { 
     Heart = 1,
     Spade,
     Diamond,
     Club
 }
+
 ```
 
 This allows you to assert an enum value as truthy
@@ -503,9 +517,12 @@ This allows you to assert an enum value as truthy
 Ooh, new syntax
 
 ```typescript
+
 type Suit = "Heart" | "Diamond" | "Spade" | "Club";
 
 let aSuit: Suit = "Heart";
+let anotherSuit: Suit = "Four"; //error!
+
 ```
 
 ---
@@ -529,9 +546,10 @@ I prefer string literals, but you might like enum
 Real world:
 
 ```csharp
+////Person.cs
 enum SecurityClearance { TopSecret, Lowest }
 
-class Person
+public class Person
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public SecurityClearance SecurityClearance { get; set; }
@@ -548,7 +566,9 @@ Otherwise use enums
 Arrays are commonly used as tuples in JavaScript
 
 ```typescript
+
 let numberPair = [123, "one hundred twenty three"];
+
 ```
 
 ---
@@ -558,6 +578,7 @@ let numberPair = [123, "one hundred twenty three"];
 You can add type annotations to enforce the "tuple" type
 
 ```typescript
+
 function printNumbers(aNumberTuple: [number, string]) {
     console.log(`${aNumberTuple[0]}` `${aNumberTuple[1]}`);
 }
@@ -565,11 +586,13 @@ function printNumbers(aNumberTuple: [number, string]) {
 let numberPair = [123, "one hundred twenty three"];
 printNumbers(numberPair);   //ok
 printNumbers(["two", 2]);   //error
+
 ```
 
 ---
 
-## Type assertions and type guards
+## Type assertions
+## Type guards
 
 But before we do...
 
@@ -605,6 +628,7 @@ Code | Returns
 TypeScript is contextually aware when you're in a `typeof` block
 
 ```typescript
+
 function printLowerCase(arg: any) {
     if (typeof arg === "string") {
         console.log(arg.toLowerCase());
@@ -612,8 +636,194 @@ function printLowerCase(arg: any) {
         console.log(arg);
     }
 }
+
 ```
 
 ---
 
 ## `instanceof`
+
+Inspects the prototype chain
+
+```typescript
+
+class Person {
+    firstName: string;
+}
+
+let person = new Person();
+console.log(person instanceof Person);  //true
+console.log(person instanceof Date);    //false
+
+```
+
+---
+
+## Just one problem...
+
+JavaScript lacks sophisticated runtime introspection  
+You can't use `typeof` or `instanceof` to plain JS objects to compare to another object  
+(Well, you can, but it wouldn't be very useful)
+
+```typescript
+
+let employee = new Employee("John");
+let employeeStructurally = {
+    firstName: "John"
+};
+
+typeof employee;  //object
+employee instanceof Employee;   //true
+employeeStructurally instanceof Employee;   //false
+
+```
+
+---
+
+## Another problem...
+
+Interfaces can't use `instanceof` because they don't exist in JS
+
+```typescript
+
+interface Person {
+    firstName: string;
+}
+
+let personStructurally = {
+    firstName: "John"
+};
+
+personStructurally instanceof Person;   //error!
+
+```
+
+---
+
+## Solution: type guards
+
+We can add user-defined type guards like so:
+
+```typescript
+
+function isFish(pet: Fish | Bird): pet is Fish {
+    return (<Fish>pet).swim !== undefined;
+}
+
+if (isFish(pet)) {
+    pet.swim();
+}
+else {
+    pet.fly();
+}
+
+```
+
+This gives the TS compiler enough information to assure that a given type is what it says it is
+
+---
+
+We'll come back to type guards
+
+---
+
+In other words...
+
+---
+
+![Alton Brown again](assets/alton.jpg)
+
+---
+
+## Union types
+
+Marks a type as being either or
+
+```typescript
+
+interface AjaxOptions {
+    url: string;
+    type: string;
+}
+
+function ajaxRequest(urlOrOptions: string | AjaxOptions) {
+    if (typeof urlOrOptions === "string") {
+        return $.get(urlOrOptions);
+    } else {
+        return $.ajax(urlOrOptions.url, {
+            type: urlOrOptions.type
+        });
+    }
+}
+
+```
+
+---
+
+## Intersection types
+
+Ever seen this before?
+
+```typescript
+
+Object.assign(objectOne, objectTwo);
+angular.extend(objectOne, objectTwo);
+$.extend(objectOne, objectTwo);
+
+```
+
+Result is the same - `objectOne` now has all of the properties from `objectTwo`
+
+---
+
+## Intersection types
+
+Represents two or more types combined into one
+
+```typescript
+
+function extend<T, U>(first: T, second: U): T & U {
+    let result = <T & U>{};
+    for (let id in first) {
+        (<any>result)[id] = (<any>first)[id];
+    }
+    for (let id in second) {
+        if (!result.hasOwnProperty(id)) {
+            (<any>result)[id] = (<any>second)[id];
+        }
+    }
+    return result;
+}
+
+```
+
+---
+
+## Type aliases
+
+Incredibly useful for union and intersection types  
+Defines types you can use over and over again
+
+```typescript
+
+//union type
+type StringOrNumber = string | number;
+
+
+
+```
+
+## Also useful for strictNullCheck
+
+If compiler option `--strictNullCheck` is on...
+
+```typescript
+
+let aNumber: number = undefined;    //not allowed
+
+type NumberOrUndefined = number | undefined;
+
+let anotherNumber: NumberOrUndefined = undefined;  //ok
+
+```
+
