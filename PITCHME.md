@@ -72,17 +72,7 @@ Google
 
 ---
 
-###  What TypeScript Isn't
-
 > **TypeScript is manifestly not about turning JavaScript into C#.** You’ll never be best of breed in one ecosystem by attempting to retrofit another ecosystem.
-
-Anders Heljsberg
-
-![Anders Heljsberg](assets/anders.jpg)
-
----
-
-> TypeScript is about making *JavaScript* scale. It’s about augmenting JavaScript with those features that are missing for medium to large scale app development, and doing so in a way that is synergistic with the existing JavaScript ecosystem.
 
 Anders Heljsberg
 
@@ -150,6 +140,18 @@ let aNumber: number = 42;
 
 Explicitly marks variable as a type  
 Useful when you don't know value ahead of time
+
+---
+
+###  Explicit Types Useful for Gradual Refactoring
+
+```typescript
+let anAmbiguousType: any = 42;
+
+anAmbiguousType = "a string";      //valid
+anAmbiguousType = function() {};   //valid
+anAmbiguousType = 123;             //valid
+```
 
 ---
 
