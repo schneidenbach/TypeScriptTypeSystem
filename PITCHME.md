@@ -407,6 +407,167 @@ Classes can implement interfaces
 
 ```typescript
 interface Person {
+    firstName: string;
+    lastName: string;
+}
 
+class Employee implements Person {
+    firstName: string;
+    lastName: string;
+    dateHired: Date;
 }
 ```
+
+---
+
+## Classes
+
+Classes can inherit from other classes
+
+```
+class SalesRepresentative inherits Employee {
+    salesCode: string;
+}
+```
+
+---
+
+## Classes
+
+Strongest use cases are inheritance and code reuse
+
+---
+
+## Enums
+
+Enums are just like enums in C# and VB.NET  
+Number based
+
+```typescript
+enum Suit { 
+    Heart,
+    Spade,
+    Diamond,
+    Club
+}
+
+let aSuit: Suit = Suit.Club;
+```
+
+---
+
+## const Enums
+
+Inlines use of the enum
+
+```typescript
+const enum Suit { 
+    Heart,
+    Spade,
+    Diamond,
+    Club
+}
+
+let aSuit: Suit = Suit.Club;
+```
+
+Compiles to:
+
+```typescript
+let aSuit = 3;
+```
+
+A little more performant
+
+---
+
+## Enum tip
+
+When using enums, start the enum with number 1
+
+```typescript
+enum Suit { 
+    Heart = 1,
+    Spade,
+    Diamond,
+    Club
+}
+```
+
+This allows you to assert an enum value as truthy
+
+---
+
+## String literal types
+
+Ooh, new syntax
+
+```typescript
+type Suit = "Heart" | "Diamond" | "Spade" | "Club";
+
+let aSuit: Suit = "Heart";
+```
+
+---
+
+As far as the `type` syntax goes...
+
+---
+
+![Alton Brown](assets/alton.jpg)
+
+---
+
+## Enums vs string literals
+
+I prefer string literals, but you might like enum
+
+---
+
+## Enums vs string literals
+
+Real world:
+
+```csharp
+enum SecurityClearance { TopSecret, Lowest }
+
+class Person
+{
+    [JsonConverter(typeof(StringEnumConverter))]
+    public SecurityClearance SecurityClearance { get; set; }
+}
+```
+
+If you deserialize enums as string, use string literals  
+Otherwise use enums
+
+---
+
+## Tuples
+
+Arrays are commonly used as tuples in JavaScript
+
+```typescript
+let numberPair = [123, "one hundred twenty three"];
+```
+
+---
+
+## Tuples
+
+You can add type annotations to enforce the "tuple" type
+
+```typescript
+function printNumbers(aNumberTuple: [number, string]) {
+    console.log(`${aNumberTuple[0]}` `${aNumberTuple[1]}`);
+}
+
+let numberPair = [123, "one hundred twenty three"];
+printNumbers(numberPair);   //ok
+printNumbers(["two", 2]);   //error
+```
+
+---
+
+## Type assertions and type guards
+
