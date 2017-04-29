@@ -62,6 +62,10 @@ Google
 
 ---
 
+[Standards](https://imgs.xkcd.com/comics/standards.png)
+
+---
+
 ###  Major Companies Are Using TypeScript
 
 [Slack](https://slack.engineering/typescript-at-slack-a81307fa288d)
@@ -115,7 +119,7 @@ Equally good - TypeScript's awesome type system
 
 ###  Let's Talk Basics
 
-`number`, `string`, `boolean`
+`number`, `string`, `boolean`  
 `null`, `undefined`  
 `array`
 ---
@@ -527,6 +531,10 @@ Strongest use cases are inheritance and code reuse
 
 ---
 
+![Overdone OO](assets/oo.png)
+
+---
+
 ###  Enums
 
 Enums are just like enums in C# and VB.NET
@@ -692,7 +700,7 @@ Code | Returns
 `typeof 123` | `"number"`
 `typeof function() {}` | `"function"`
 `typeof {}` | `"object"`
-`typeof new Person()` | `"object"`
+`typeof new Employee()` | `"object"`
 `typeof undefined` | `"undefined"`
 `typeof null` | `"object"`
 
@@ -744,8 +752,8 @@ let employeeStructurally = {
     firstName: "John"
 };
 
-typeof employee;  //object
-employee instanceof Employee;   //true
+typeof employee;                            //object
+employee instanceof Employee;               //true
 employeeStructurally instanceof Employee;   //false
 
 ```
@@ -1259,24 +1267,24 @@ public PersonController : Controller
 
 ---
 
-###  Modeling this in TypeScript
+###  Modeling the request in TypeScript
 
 ```typescript
 interface PersonPostRequest {
     firstName: string;
     lastName: string;
 }
-
-interface PersonOkResponse {
-    id: number;
-}
 ```
 
 ---
 
-###  Error type using `keyof`
+###  Modeling responses in TypeScript
 
 ```typescript
+interface PersonOkResponse {
+    id: number;
+}
+
 //indexed type and keyof
 interface BadRequestResponse<TRequest> {
     message: string;
@@ -1289,6 +1297,8 @@ interface BadRequestResponse<TRequest> {
 ---
 
 ```typescript
+interface PersonPostRequest { firstName: string; lastName: string; }
+
 interface BadRequestResponse<TRequest> {
     message: string;
     modelState: {
@@ -1296,7 +1306,6 @@ interface BadRequestResponse<TRequest> {
     };
 }
 
-interface PersonPostRequest { firstName: string; lastName: string; }
 interface PersonOkResponse { id: number; }
 
 //union type
@@ -1346,6 +1355,8 @@ function handleResponse(response: PersonResponse) {
 ---
 
 ### Getting Started
+
+Greenfield vs brownfield
 
 ---
 
