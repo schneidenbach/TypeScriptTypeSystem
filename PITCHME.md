@@ -68,7 +68,8 @@ Google
 
 ###  Major Companies Are Using TypeScript
 
-[Slack](https://slack.engineering/typescript-at-slack-a81307fa288d)
+[Slack](https://slack.engineering/typescript-at-slack-a81307fa288d)  
+[Reddit](https://redditblog.com/2017/06/30/why-we-chose-typescript/)
 
 ---
 
