@@ -427,14 +427,6 @@ Useful for enforcing the return type of an index
 
 ---
 
-###  We'll revisit index types
-
----
-
-![Alton Brown](assets/alton.jpg)
-
----
-
 ###  Runtime impact of interfaces?
 
 ---
@@ -609,14 +601,6 @@ let aSuit: Suit = "Heart";
 let anotherSuit: Suit = "Four"; //error!
 
 ```
-
----
-
-As far as the `type` syntax goes...
-
----
-
-![Alton Brown](assets/alton.jpg)
 
 ---
 
@@ -797,18 +781,6 @@ if (isFish(pet)) {
 ```
 
 This gives the TS compiler enough information to assure that a given type is what it says it is
-
----
-
-We'll come back to type guards
-
----
-
-In other words...
-
----
-
-![Alton Brown again](assets/alton.jpg)
 
 ---
 
