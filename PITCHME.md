@@ -1,4 +1,4 @@
-![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+![TypeScript Logo](assets/tslogo.png)
 
 ####  Deconstructing TypeScript's Type System
 
@@ -18,7 +18,7 @@ typescript.schneids.net
 
 ###  What is TypeScript?
 
-![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+![TypeScript Logo](assets/tslogo.png)
 
 --- 
 
@@ -102,13 +102,13 @@ basic type usage
 
 ---
 
-![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+![TypeScript Logo](assets/tslogo.png)
 
 Those are great reasons to use TypeScript
 
 ---
 
-![TypeScript Logo](https://cloud.githubusercontent.com/assets/3449303/18765110/8c5c603e-8114-11e6-9166-554b0face27b.png)
+![TypeScript Logo](assets/tslogo.png)
 
 Equally good - TypeScript's awesome type system
 
