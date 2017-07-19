@@ -8,6 +8,12 @@
 
 ---
 
+![](assets/devup.png)
+
+devupconf.org
+
+---
+
 Twitter @schneidenbach
 
 ## Slides plus more at
