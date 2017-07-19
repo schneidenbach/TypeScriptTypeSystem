@@ -12,7 +12,7 @@ Twitter @schneidenbach
 
 ## Slides plus more at
 
-typescript.schneids.net
+ss.zone/typescript
 
 ---
 
@@ -1335,7 +1335,7 @@ Greenfield vs brownfield
 
 ### More resources
 
-typescript.schneids.net  
+ss.zone/typescript  
 typescriptlang.org
 
 ---
