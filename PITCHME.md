@@ -1327,9 +1327,11 @@ function handleResponse(response: PersonResponse) {
 
 ---
 
-### Getting Started
+## Angular Demo
 
-Greenfield vs brownfield
+---
+
+## ~~Angular~~ React Demo
 
 ---
 
