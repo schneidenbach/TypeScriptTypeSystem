@@ -302,13 +302,14 @@ addPerson({
 
 ###  Duck typing
 
-If it quacks like a duck, walks like a duck, and looks like a duck, it's a duck
+If it quacks like a duck, walks like a duck, and looks like a duck...
 
 ---
 
 ###  Duck typing
 
 ![PHP? No thanks!](assets/duck.jpg)
+...it's a duck
 
 ---
 
@@ -528,69 +529,6 @@ Strongest use cases are inheritance and code reuse
 
 ---
 
-###  Enums
-
-Enums are just like enums in C# and VB.NET
-
-```typescript
-enum Suit { 
-    Heart,
-    Spade,
-    Diamond,
-    Club
-}
-
-let aSuit: Suit = Suit.Club;
-
-```
-
----
-
-###  const Enums
-
-Inlines use of the enum
-
-```typescript
-const enum Suit { 
-    Heart,
-    Spade,
-    Diamond,
-    Club
-}
-
-let aSuit: Suit = Suit.Club;
-
-```
-
-Compiles to:
-
-```typescript
-let aSuit = 3;
-
-```
-
-A little more performant
-
----
-
-###  Enum tip
-
-When using enums, start the enum with number 1
-
-```typescript
-enum Suit { 
-    Heart = 1,
-    Spade,
-    Diamond,
-    Club
-}
-
-```
-
-This allows you to assert an enum value as truthy
-
----
-
 ###  String literal types
 
 Ooh, new syntax
@@ -605,13 +543,7 @@ let anotherSuit: Suit = "Four"; //error!
 
 ---
 
-###  Enums vs string literals
-
-I prefer string literals, but you might like enum
-
----
-
-###  Enums vs string literals
+###  String literals
 
 Real world:
 
@@ -626,36 +558,7 @@ public class Person
 }
 ```
 
-If you deserialize enums as string, use string literals  
-Otherwise use enums
-
----
-
-###  Tuples
-
-Arrays are commonly used as tuples in JavaScript
-
-```typescript
-let numberPair = [123, "one hundred twenty three"];
-
-```
-
----
-
-###  Tuples
-
-You can add type annotations to enforce the "tuple" type
-
-```typescript
-function printNumbers(aNumberTuple: [number, string]) {
-    console.log(`${aNumberTuple[0]}` `${aNumberTuple[1]}`);
-}
-
-let numberPair = [123, "one hundred twenty three"];
-printNumbers(numberPair);   //ok
-printNumbers(["two", 2]);   //error
-
-```
+If you deserialize enums as string, use string literals
 
 ---
 
