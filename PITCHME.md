@@ -1238,7 +1238,7 @@ Greenfield vs brownfield
 
 ### More resources
 
-ss.zone/typescript  
+typescript.schneids.net  
 typescriptlang.org
 
 ---
