@@ -247,7 +247,7 @@ They are similar, but not the same as .NET interfaces!
 ```typescript
 interface Person {
     firstName: string;
-    lastName; string;
+    lastName: string;
 }
 
 ```
