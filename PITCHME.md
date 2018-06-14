@@ -12,7 +12,7 @@ Twitter @schneidenbach
 
 ## Slides plus more at
 
-ss.zone/typescript
+typescript.schneids.net
 
 ---
 
@@ -529,6 +529,57 @@ Strongest use cases are inheritance and code reuse
 
 ---
 
+###  Union types
+
+Marks a type as being either or
+
+```typescript
+let input: number | string;
+
+input = "this";       //valid!
+input = 123;          //valid!
+input = {             //error!
+    words: "ok"
+}
+```
+
+---
+
+###  Union types
+
+```typescript
+interface AjaxOptions {
+    url: string;
+    type: string;
+}
+
+function ajaxRequest(urlOrOptions: string | AjaxOptions) {}
+```
+
+---
+
+###  Union types
+
+```typescript
+interface AjaxOptions {
+    url: string;
+    type: string;
+}
+
+function ajaxRequest(urlOrOptions: string | AjaxOptions) {
+    if (typeof urlOrOptions === "string") {
+        return $.get(urlOrOptions);
+    } else {
+        return $.ajax(urlOrOptions.url, {
+            type: urlOrOptions.type
+        });
+    }
+}
+
+```
+
+---
+
 ###  String literal types
 
 Ooh, new syntax
@@ -559,7 +610,6 @@ public class Person
 ```
 
 If you deserialize enums as string, use string literals
-
 ---
 
 ###  Type assertions
@@ -686,56 +736,6 @@ if (isFish(pet)) {
 
 This gives the TS compiler enough information to assure that a given type is what it says it is
 
----
-
-###  Union types
-
-Marks a type as being either or
-
-```typescript
-let input: number | string;
-
-input = "this";       //valid!
-input = 123;          //valid!
-input = {             //error!
-    words: "ok"
-}
-```
-
----
-
-###  Union types
-
-```typescript
-interface AjaxOptions {
-    url: string;
-    type: string;
-}
-
-function ajaxRequest(urlOrOptions: string | AjaxOptions) {}
-```
-
----
-
-###  Union types
-
-```typescript
-interface AjaxOptions {
-    url: string;
-    type: string;
-}
-
-function ajaxRequest(urlOrOptions: string | AjaxOptions) {
-    if (typeof urlOrOptions === "string") {
-        return $.get(urlOrOptions);
-    } else {
-        return $.ajax(urlOrOptions.url, {
-            type: urlOrOptions.type
-        });
-    }
-}
-
-```
 ---
 
 ###  Intersection types
